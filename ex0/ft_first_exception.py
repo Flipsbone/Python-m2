@@ -3,7 +3,7 @@
     exceptions."""
 
 
-def check_temperature(temp_str) -> int | None:
+def check_temperature(temp_str: str) -> int | None:
     """
     Check if the given temperature string is valid for plants.
     Valid temperatures are between 0 and 40 degrees Celsius.

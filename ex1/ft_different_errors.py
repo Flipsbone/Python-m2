@@ -1,13 +1,17 @@
-#!/user/bin/env python3.10
+#!/usr/bin/env python3.10
 """A function that raises different types of errors for demonstration."""
 
 
-def garden_operations() -> None | int:
+def garden_operations(action: str) -> None:
     """A function that raises different types of errors for demonstration."""
-    int("abc")
-    1 / 0
-    open("missing.txt", "r")
-    {}["missing_plant"]
+    if action == "convert":
+        int("abc")
+    elif action == "divid":
+        1 / 0
+    elif action == "open":
+        open("missing.txt", "r")
+    elif action == "look":
+        {}["missing_plant"]  # type: ignore
 
 
 def test_error_types() -> None:
@@ -16,25 +20,26 @@ def test_error_types() -> None:
 
     try:
         print("Testing ValueError...")
-        int("abc")
+        garden_operations("convert")
     except ValueError as e:
         print(f"Caught ValueError: {e}\n")
 
     try:
         print("Testing ZeroDivisionError...")
-        1 / 0
+        garden_operations("divid")
     except ZeroDivisionError as e:
         print(f"Caught ZeroDivisionError: {e}\n")
 
     try:
         print("Testing FileNotFoundError...")
-        open("missing.txt", "r")
+        garden_operations("open")
     except FileNotFoundError as e:
         print(f"Caught FileNotFoundError: {e}\n")
 
     try:
         print("Testing KeyError...")
-        {}["missing_plant"]
+        {}["missing_plant"]  # type: ignore
+        open("look")
     except KeyError as e:
         print(f"Caught KeyError: {e}\n")
 
