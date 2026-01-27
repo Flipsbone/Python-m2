@@ -11,7 +11,8 @@ def garden_operations(action: str) -> None:
     elif action == "open":
         open("missing.txt", "r")
     elif action == "look":
-        {}["missing_plant"]  # type: ignore
+        dictionnary: dict[str, str] = {}
+        dictionnary["missing_plant"]
 
 
 def test_error_types() -> None:
@@ -38,7 +39,6 @@ def test_error_types() -> None:
 
     try:
         print("Testing KeyError...")
-        {}["missing_plant"]  # type: ignore
         open("look")
     except KeyError as e:
         print(f"Caught KeyError: {e}\n")
