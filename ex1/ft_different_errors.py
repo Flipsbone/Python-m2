@@ -3,7 +3,15 @@
 
 
 def garden_operations(action: str) -> None:
-    """A function that raises different types of errors for demonstration."""
+    """ Perform different garden operations that may raise errors.
+    Args:
+        action (str): The type of operation to perform.
+    Raises:
+        ValueError: If the action is 'convert' and conversion fails.
+        ZeroDivisionError: If the action is 'divid'and division by zero occurs.
+        FileNotFoundError: If the action is 'open' and the file does not exist.
+        KeyError: If the action is 'look' and a missing key is accessed.
+    """
     if action == "convert":
         int("abc")
     elif action == "divid":

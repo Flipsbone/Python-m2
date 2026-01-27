@@ -1,4 +1,6 @@
 #! usr/bin/env python3.10
+"""A demonstration of custom exception classes for garden-related errors."""
+
 
 class GardenError(Exception):
     pass
