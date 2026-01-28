@@ -47,7 +47,7 @@ def test_error_types() -> None:
 
     try:
         print("Testing KeyError...")
-        open("look")
+        garden_operations("look")
     except KeyError as e:
         print(f"Caught KeyError: {e}\n")
 
