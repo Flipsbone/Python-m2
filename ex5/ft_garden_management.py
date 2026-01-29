@@ -81,6 +81,10 @@ def test_garden_management() -> None:
     try:
         raise WaterError("Not enough water in tank")
     except GardenError as e:
-        print(f"Caught GardenError: {e}\n")
-    print("System recovered and continuing...")
+        print(f"Caught GardenError: {e}")
+    print("System recovered and continuing...\n")
     print("Garden management system test complete!")
+
+
+if __name__ == "__main__":
+    test_garden_management()

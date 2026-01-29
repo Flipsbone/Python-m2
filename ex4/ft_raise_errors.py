@@ -1,4 +1,4 @@
-#!/usr/bin/env python 3.10
+#!/usr/bin/env python3.10
 """ A function that raises ValueError for invalid plant health checks."""
 
 
@@ -57,3 +57,7 @@ def test_plant_checks():
     except ValueError as e:
         print(f"Error: {e}\n")
     print("All error raising tests completed!")
+
+
+if __name__ == "__main__":
+    test_plant_checks()

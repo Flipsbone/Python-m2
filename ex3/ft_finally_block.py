@@ -1,4 +1,4 @@
-#!/usr/bin/env python 3.10
+#!/usr/bin/env python3.10
 """A demonstration of the finally block in exception handling for
 garden watering."""
 
@@ -31,3 +31,7 @@ def test_watering_system() -> None:
     plant_list2 = ["tomato", None, "carrots"]
     water_plants(plant_list2)
     print("\nCleanup always happens, even with errors!")
+
+
+if __name__ == "__main__":
+    test_watering_system()

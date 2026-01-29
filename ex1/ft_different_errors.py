@@ -26,31 +26,37 @@ def garden_operations(action: str) -> None:
 def test_error_types() -> None:
     """Test various error types to ensure proper exception handling."""
     print("=== Garden Error Types Demo ===\n")
-
+    print("Testing ValueError...")
     try:
-        print("Testing ValueError...")
         garden_operations("convert")
     except ValueError as e:
         print(f"Caught ValueError: {e}\n")
 
+    print("Testing ZeroDivisionError...")
     try:
-        print("Testing ZeroDivisionError...")
         garden_operations("divid")
     except ZeroDivisionError as e:
         print(f"Caught ZeroDivisionError: {e}\n")
 
+    print("Testing FileNotFoundError...")
     try:
-        print("Testing FileNotFoundError...")
         garden_operations("open")
     except FileNotFoundError as e:
         print(f"Caught FileNotFoundError: {e}\n")
 
+    print("Testing KeyError...")
     try:
-        print("Testing KeyError...")
         garden_operations("look")
     except KeyError as e:
         print(f"Caught KeyError: {e}\n")
 
     print("Testing multiple errors together...")
-    print("Caught an error, but program continues!\n")
+    try:
+        garden_operations("convert")
+    except (ValueError, ZeroDivisionError):
+        print("Caught an error, but program continues!\n")
     print("All error types tested successfully!")
+
+
+if __name__ == "__main__":
+    test_error_types()
