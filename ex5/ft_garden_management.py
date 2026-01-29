@@ -84,6 +84,3 @@ def test_garden_management() -> None:
         print(f"Caught GardenError: {e}\n")
     print("System recovered and continuing...")
     print("Garden management system test complete!")
-
-
-test_garden_management()
