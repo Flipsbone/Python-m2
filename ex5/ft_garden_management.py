@@ -1,28 +1,48 @@
 #!/usr/bin/env python3.10
+"""A garden management system with custom exceptions and error handling."""
+
 
 class GardenError(Exception):
+    """Base exception class for garden-related errors."""
     pass
 
 
 class PlantError(GardenError):
+    """Exception raised for plant-related errors in the garden."""
     pass
 
 
 class WaterError(GardenError):
+    """Exception raised for water-related errors in the garden."""
     pass
 
 
 class Plant:
-    def __init__(self, name: str, water_level: int, sun: int):
+    """A class representing a plant in the garden.
+    Attributes:
+        name (str): The name of the plant.
+        water_level (int): The water level of the plant.
+        sun (int): The sunlight hours the plant receives.
+    """
+    def __init__(self, name: str, water_level: int, sun: int) -> None:
+        """Initialize a Plant instance.
+        Args:
+            name (str): The name of the plant.
+            water_level (int): The water level of the plant.
+            sun (int): The sunlight hours the plant receives.
+        """
         self.name = name
         self.water_level = int(water_level)
         self.sun = sun
 
 
 class GardenManager:
-
+    """A class to manage garden operations with error handling.
+    Attributes:
+        plants (list[Plant]): A list of plants in the garden.
+    """
     def __init__(self) -> None:
-
+        """Initialize a GardenManager instance."""
         self.plants: list[Plant] = []
 
     def adding_plant(self, name: str, water_level: int, sun: int) -> None:
@@ -39,6 +59,10 @@ class GardenManager:
         print(f"Added {name} successfully")
 
     def watering_plants(self) -> None:
+        """Water all plants in the garden, ensuring cleanup after watering.
+        Raises:
+            WaterError: If watering fails for any plant.
+        """
         print("Watering plants...")
         print("Opening watering system")
         try:
@@ -49,6 +73,10 @@ class GardenManager:
             print("Closing watering system (cleanup)\n")
 
     def checking_plants_health(self) -> None:
+        """Check the health of all plants, raising errors for unhealthy plants.
+        Raises:
+            WaterError: If a plant's water level is too high.
+        """
         print("Checking plant health...")
         for plant in self.plants:
             try:
@@ -64,11 +92,12 @@ class GardenManager:
 
 
 def test_garden_management() -> None:
+    """Test the Garden Management System with error handling."""
     print("=== Garden Management System ===\n")
     garden = GardenManager()
+
     print("Adding plants to garden...")
     plant_data = [("tomato", 4, 8), ("lettuce", 14, 8), ("", 5, 8)]
-
     for name, water_level, sun in plant_data:
         try:
             garden.adding_plant(name, water_level, sun)
