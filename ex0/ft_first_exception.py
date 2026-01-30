@@ -14,15 +14,16 @@ def check_temperature(temp_str: str) -> int | None:
     """
     try:
         temperature = int(temp_str)
-        if temperature > 40:
-            print(f"Error: {temperature}°C is too hot for plants (max 40°C)\n")
-            return None
-        elif temperature < 0:
-            print(f"Error: {temperature}°C is too cold for plants (min 0°C)\n")
-            return None
-        else:
+        if 0 <= temperature <= 40:
             print(f"Temperature {temperature}°C is perfect for plants!\n")
             return temperature
+        if temperature > 40:
+            status, limit = "too hot", "max 40°C"
+        else:
+            status, limit = "too cold", "min 0°C"
+        print(f"Error: {temperature}°C is {status} for plants ({limit})\n")
+        return None
+
     except ValueError:
         print(f"Error: '{temp_str}' is not a valid number\n")
         return None
