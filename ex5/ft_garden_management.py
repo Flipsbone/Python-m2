@@ -33,7 +33,7 @@ class Plant:
         """
         self.name = name
         self.water_level = int(water_level)
-        self.sun = sun
+        self.sunlight_hours = sun
 
 
 class GardenManager:
@@ -75,7 +75,8 @@ class GardenManager:
     def checking_plants_health(self) -> None:
         """Check the health of all plants, raising errors for unhealthy plants.
         Raises:
-            WaterError: If a plant's water level is too high.
+            WaterError: If a plant's water level is too low or high.
+
         """
         print("Checking plant health...")
         for plant in self.plants:
@@ -84,10 +85,22 @@ class GardenManager:
                     raise WaterError(
                         f"{plant.name}: Water level {plant.water_level} "
                         "is too high (max 10)")
+                elif plant.water_level < 1:
+                    raise WaterError(
+                        f"Water level {plant.water_level} "
+                        "is too low (min 1)")
+                if (plant.sunlight_hours < 2):
+                    raise GardenError(
+                        f"Sunlight hours {plant.sunlight_hours} "
+                        "is too low (min 2)")
+                elif (plant.sunlight_hours > 12):
+                    raise GardenError(
+                        f"Sunlight hours {plant.sunlight_hours} "
+                        "is too high (max 12)")
                 print(
                     f"{plant.name}: healthy (water: {plant.water_level}, "
-                    f"sun: {plant.sun})")
-            except WaterError as e:
+                    f"sun: {plant.sunlight_hours})")
+            except GardenError as e:
                 print(f"Error checking {e}\n")
 
 
@@ -105,7 +118,9 @@ def test_garden_management() -> None:
             print(f"Error adding plant: {e}\n")
 
     garden.watering_plants()
+
     garden.checking_plants_health()
+
     print("Testing error recovery...")
     try:
         raise WaterError("Not enough water in tank")
